@@ -58,7 +58,7 @@ func TestGetObjects(t *testing.T) {
 
 	t.Run("Returns expected objects based on input", func(t *testing.T) {
 		expectations := []getObjectsExpected{
-			getObjectsExpected{
+			{
 				err:           status.Errorf(codes.Unimplemented, "unimplemented resource type: bar"),
 				namespace:     "foo",
 				resType:       "bar",
@@ -66,7 +66,7 @@ func TestGetObjects(t *testing.T) {
 				k8sResResults: []string{},
 				k8sResMisc:    []string{},
 			},
-			getObjectsExpected{
+			{
 				err:       nil,
 				namespace: "my-ns",
 				resType:   k8s.Pod,
@@ -85,7 +85,7 @@ status:
 				},
 				k8sResMisc: []string{},
 			},
-			getObjectsExpected{
+			{
 				err:           errors.New("pod \"my-pod\" not found"),
 				namespace:     "not-my-ns",
 				resType:       k8s.Pod,
@@ -99,7 +99,7 @@ metadata:
   namespace: my-ns`,
 				},
 			},
-			getObjectsExpected{
+			{
 				err:       nil,
 				namespace: "",
 				resType:   k8s.ReplicationController,
@@ -113,7 +113,7 @@ metadata:
 				},
 				k8sResMisc: []string{},
 			},
-			getObjectsExpected{
+			{
 				err:       nil,
 				namespace: "my-ns",
 				resType:   k8s.Deployment,
@@ -133,7 +133,7 @@ metadata:
   namespace: not-my-ns`,
 				},
 			},
-			getObjectsExpected{
+			{
 				err:       nil,
 				namespace: "",
 				resType:   k8s.DaemonSet,
@@ -146,7 +146,7 @@ metadata:
   namespace: my-ns`,
 				},
 			},
-			getObjectsExpected{
+			{
 				err:       nil,
 				namespace: "my-ns",
 				resType:   k8s.DaemonSet,
@@ -166,7 +166,7 @@ metadata:
   namespace: not-my-ns`,
 				},
 			},
-			getObjectsExpected{
+			{
 				err:       nil,
 				namespace: "",
 				resType:   k8s.Namespace,
@@ -240,7 +240,7 @@ metadata:
 	t.Run("If objects are pods", func(t *testing.T) {
 		t.Run("Return running or pending pods", func(t *testing.T) {
 			expectations := []getObjectsExpected{
-				getObjectsExpected{
+				{
 					err:       nil,
 					namespace: "my-ns",
 					resType:   k8s.Pod,
@@ -258,7 +258,7 @@ status:
   phase: Running`,
 					},
 				},
-				getObjectsExpected{
+				{
 					err:       nil,
 					namespace: "my-ns",
 					resType:   k8s.Pod,
@@ -297,7 +297,7 @@ status:
 
 		t.Run("Don't return failed or succeeded pods", func(t *testing.T) {
 			expectations := []getObjectsExpected{
-				getObjectsExpected{
+				{
 					err:       nil,
 					namespace: "my-ns",
 					resType:   k8s.Pod,
@@ -315,7 +315,7 @@ status:
   phase: Succeeded`,
 					},
 				},
-				getObjectsExpected{
+				{
 					err:       nil,
 					namespace: "my-ns",
 					resType:   k8s.Pod,
@@ -368,7 +368,7 @@ func TestGetPodsFor(t *testing.T) {
 
 	t.Run("Returns expected pods based on input", func(t *testing.T) {
 		expectations := []getPodsForExpected{
-			getPodsForExpected{
+			{
 				err: nil,
 				k8sResInput: `
 apiVersion: apps/v1beta2
@@ -394,7 +394,7 @@ status:
 				},
 			},
 			// Retrieve pods associated to a ClusterIP service
-			getPodsForExpected{
+			{
 				err: nil,
 				k8sResInput: `
 apiVersion: v1
@@ -420,7 +420,7 @@ status:
 				k8sResMisc: []string{},
 			},
 			// ExternalName services shouldn't return any pods
-			getPodsForExpected{
+			{
 				err: nil,
 				k8sResInput: `
 apiVersion: v1
@@ -444,7 +444,7 @@ status:
   phase: Running`,
 				},
 			},
-			getPodsForExpected{
+			{
 				err: nil,
 				k8sResInput: `
 apiVersion: apps/v1
@@ -469,7 +469,7 @@ status:
 				},
 				k8sResMisc: []string{},
 			},
-			getPodsForExpected{
+			{
 				err: nil,
 				k8sResInput: `
 apiVersion: apps/v1beta2
@@ -504,7 +504,7 @@ status:
   phase: Finished`,
 				},
 			},
-			getPodsForExpected{
+			{
 				err: nil,
 				k8sResInput: `
 apiVersion: v1

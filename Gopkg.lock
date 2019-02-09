@@ -331,6 +331,14 @@
   revision = "104e2578924bb3b211150c19414d0144b82165bb"
 
 [[projects]]
+  branch = "master"
+  digest = "1:0856bb71810be4fa4293ee4ecb6382f602003c928e02ac42dc9b28e4f11fff4c"
+  name = "github.com/gordonklaus/ineffassign"
+  packages = ["."]
+  pruneopts = ""
+  revision = "1003c8bd00dc2869cb5ca5282e6ce33834fed514"
+
+[[projects]]
   digest = "1:64d212c703a2b94054be0ce470303286b177ad260b2f89a307e3d1bb6c073ef6"
   name = "github.com/gorilla/websocket"
   packages = ["."]
@@ -1252,6 +1260,7 @@
     "github.com/golang/protobuf/protoc-gen-go",
     "github.com/golang/protobuf/ptypes",
     "github.com/golang/protobuf/ptypes/duration",
+    "github.com/gordonklaus/ineffassign",
     "github.com/gorilla/websocket",
     "github.com/grpc-ecosystem/go-grpc-prometheus",
     "github.com/julienschmidt/httprouter",

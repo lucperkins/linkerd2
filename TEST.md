@@ -37,6 +37,12 @@ To analyze the Go code without running tests, run:
 go vet ./...
 ```
 
+To detect ineffectual assignments using ineffassign, run:
+
+```bash
+bin/ineffassign
+```
+
 To lint the Go code using golint, run:
 
 ```bash
